@@ -21,7 +21,7 @@ cd gradle_project
 
 # Download Gradle if not already present
 if [ ! -d "gradle_home" ]; then
-    curl -sS https://services.gradle.org/distributions/gradle-8.10-bin.zip -o gradle.zip
+    wget https://services.gradle.org/distributions/gradle-8.10-bin.zip -O gradle.zip
     unzip -q gradle.zip
     rm gradle.zip
     mv gradle-* gradle_home
