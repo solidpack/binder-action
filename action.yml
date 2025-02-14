@@ -1,0 +1,79 @@
+name: "Gradle Task Runner with Publishing"
+description: "Runs a Gradle task and optionally publishes to a Reposilite repository"
+author: "Your Name"
+branding:
+  icon: "play"
+  color: "blue"
+
+inputs:
+  gradle_task:
+    description: "The Gradle task to execute"
+    required: true
+    default: "build"
+
+  version:
+    description: "Version of io.github.solid-resourcepack.binder"
+    required: true
+
+  depth:
+    description: "Depth of the model namespace to include"
+    required: true
+
+  package:
+    description: "Package name for generated classes"
+    required: true
+
+  classname:
+    description: "Class name for the resulting enum"
+    required: true
+
+  artifact_id:
+    description: "Artifact ID for publication"
+    required: true
+
+  artifact_version:
+    description: "Artifact version for publication"
+    required: true
+
+  namespaces:
+    description: "Comma-separated list of namespaces"
+    required: true
+
+  repo_url:
+    description: "Reposilite repository URL"
+    required: false
+    default: ""
+
+  repo_user:
+    description: "Reposilite username (GitHub Secret recommended)"
+    required: false
+    default: ""
+
+  repo_password:
+    description: "Reposilite password (GitHub Secret recommended)"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Gradle
+      run: chmod +x $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+
+    - name: Execute Gradle Task and Publish
+      run: |
+        IFS=',' read -r -a NAMESPACE_ARRAY <<< "${{ inputs.namespaces }}"
+        $GITHUB_ACTION_PATH/entrypoint.sh \
+          "${{ inputs.gradle_task }}" \
+          "${{ inputs.version }}" \
+          "${{ inputs.depth }}" \
+          "${{ inputs.package }}" \
+          "${{ inputs.classname }}" \
+          "${{ inputs.artifact_id }}" \
+          "${{ inputs.artifact_version }}" \
+          "${{ inputs.repo_url }}" \
+          "${{ inputs.repo_user }}" \
+          "${{ inputs.repo_password }}" \
+          "${NAMESPACE_ARRAY[@]}"
+      shell: bash
