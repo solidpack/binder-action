@@ -95,9 +95,9 @@ publishing {
 EOF
 
 echo "Running Gradle task: $GRADLE_TASK"
-./gradlew "$GRADLE_TASK" --project-dir $""GITHUB_WORKSPACE""
+./gradlew $GRADLE_TASK
 
 if [ "$SHOULD_PUBLISH" == "true" ]; then
     echo "Publishing to Reposilite..."
-    ./gradlew publish --project-dir $""GITHUB_WORKSPACE""
+    ./gradlew publish
 fi
