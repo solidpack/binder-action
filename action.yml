@@ -1,23 +1,25 @@
 name: "Gradle Task Runner with Publishing"
 description: "Runs a Gradle task and optionally publishes to a Reposilite repository"
-author: "Your Name"
+author: "Solid ResourcePack API"
 branding:
-  icon: "play"
-  color: "blue"
+  icon: "layers"
+  color: "white"
 
 inputs:
   gradle_task:
     description: "The Gradle task to execute"
     required: true
-    default: "build"
+    default: "generatePackBindings"
 
   version:
     description: "Version of io.github.solid-resourcepack.binder"
     required: true
+    default: "1.0"
 
   depth:
     description: "Depth of the model namespace to include"
     required: true
+    default: "2"
 
   package:
     description: "Package name for generated classes"
@@ -26,6 +28,7 @@ inputs:
   classname:
     description: "Class name for the resulting enum"
     required: true
+    default: "PackBindings"
 
   artifact_id:
     description: "Artifact ID for publication"
@@ -38,6 +41,11 @@ inputs:
   namespaces:
     description: "Comma-separated list of namespaces"
     required: true
+
+  should_publish:
+    description: "Whether the generated enum should be published or not"
+    required: true
+    default: "false"
 
   repo_url:
     description: "Reposilite repository URL"
@@ -57,6 +65,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Checkout Repository to `pack` Directory
+      uses: actions/checkout@v4
+      with:
+        path: pack
     - name: Set up Gradle
       run: chmod +x $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
