@@ -1,6 +1,6 @@
-name: "Gradle Task Runner with Publishing"
-description: "Runs a Gradle task and optionally publishes to a Reposilite repository"
-author: "Solid ResourcePack API"
+name: "Resource pack binding generator"
+description: "Generates java bindings for Minecraft resource packs"
+author: "solid-resourcepack"
 branding:
   icon: "layers"
   color: "white"
