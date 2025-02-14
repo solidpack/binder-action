@@ -84,6 +84,7 @@ runs:
           "${{ inputs.classname }}" \
           "${{ inputs.artifact_id }}" \
           "${{ inputs.artifact_version }}" \
+          "${{ inputs.should_publish }}" \
           "${{ inputs.repo_url }}" \
           "${{ inputs.repo_user }}" \
           "${{ inputs.repo_password }}" \
