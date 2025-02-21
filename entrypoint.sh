@@ -35,6 +35,8 @@ fi
 # Generate the Gradle Kotlin build script
 echo "Generating build.gradle.kts..."
 cat <<EOF > build.gradle.kts
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("io.github.solid-resourcepack.binder") version "$PLUGIN_VERSION"
     id("org.jetbrains.kotlin.jvm") version "2.0.20"
