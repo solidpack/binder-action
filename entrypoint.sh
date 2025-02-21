@@ -63,7 +63,7 @@ kotlin {
 }
 
 packBinder {
-    packPath.from(layout.projectDirectory.dir("pack")) // Define paths where your resource packs are
+    packPath.from(layout.projectDirectory.dir("../pack")) // Define paths where your resource packs are
     nameDepth = $DEPTH // How much depth of the model namespace should be included
 $(for ns in "${NAMESPACES[@]}"; do echo "    namespaces.add(\"$ns\")"; done)
     dest.set(layout.buildDirectory.dir("generated")) // Set the destination dir

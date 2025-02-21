@@ -69,6 +69,11 @@ runs:
       uses: actions/checkout@v4
       with:
         path: pack
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '21'
     - name: Set up Gradle
       run: chmod +x $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
