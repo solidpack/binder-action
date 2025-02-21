@@ -52,6 +52,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
 }
 
+repositories {
+    mavenCentral()
+}
+
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
