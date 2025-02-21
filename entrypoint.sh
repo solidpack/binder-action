@@ -37,7 +37,7 @@ echo "Generating build.gradle.kts..."
 cat <<EOF > build.gradle.kts
 plugins {
     id("io.github.solid-resourcepack.binder") version "$PLUGIN_VERSION"
-    id("org.jetbrains.kotlin.jvm") version "1.9.24"
+    id("org.jetbrains.kotlin.jvm") version "2.0.20"
     id("maven-publish")
 }
 
@@ -47,7 +47,7 @@ sourceSets.main {
 
 dependencies {
     api("io.github.solid-resourcepack.binder:api:$PLUGIN_VERSION")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.24")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
 }
 
 java {
@@ -57,7 +57,7 @@ java {
 kotlin {
     jvmToolchain(21)
     compilerOptions {
-        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
+        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
         jvmTarget.set(JvmTarget.JVM_21)
     }
 }
@@ -75,7 +75,7 @@ $(for ns in "${NAMESPACES[@]}"; do echo "    namespaces.add(\"$ns\")"; done)
 publishing {
     repositories {
         maven {
-            name = "Reposilite"
+            name = "Repo"
             url = uri("$REPO_URL")
             credentials {
                 username = "$REPO_USER"
@@ -98,6 +98,6 @@ echo "Running Gradle task: $GRADLE_TASK"
 ./gradlew $GRADLE_TASK
 
 if [ "$SHOULD_PUBLISH" == "true" ]; then
-    echo "Publishing to Reposilite..."
+    echo "Publishing to Repo..."
     ./gradlew publish
 fi
