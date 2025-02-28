@@ -48,7 +48,7 @@ sourceSets.main {
 }
 
 dependencies {
-    api("io.github.solid-resourcepack.binder:api:$PLUGIN_VERSION")
+    api("io.github.solid-resourcepack:solid-api:$PLUGIN_VERSION")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
 }
 

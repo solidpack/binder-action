@@ -14,7 +14,7 @@ inputs:
   version:
     description: "Version of io.github.solid-resourcepack.binder"
     required: true
-    default: "1.1"
+    default: "1.1.1"
 
   depth:
     description: "Depth of the model namespace to include"
